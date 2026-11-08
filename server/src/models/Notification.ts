@@ -1,0 +1,3 @@
+import mongoose,{Schema} from 'mongoose';
+const schema=new Schema({gymId:{type:Schema.Types.ObjectId,ref:'Gym',required:true,index:true},memberId:{type:Schema.Types.ObjectId,ref:'Member'},type:{type:String,required:true},idempotencyKey:{type:String,required:true},recipient:{type:String,required:true},subject:String,status:{type:String,enum:['pending','sent','failed','retrying'],default:'pending'},attempts:{type:Number,default:0},lastError:String,sentAt:Date,payload:Schema.Types.Mixed},{timestamps:true}); schema.index({gymId:1,idempotencyKey:1},{unique:true});
+export const Notification=mongoose.model('Notification',schema);

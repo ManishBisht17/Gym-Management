@@ -12,4 +12,5 @@ describe('API foundation', () => {
     const response = await request(app).get('/api/gym/profile');
     expect(response.status).toBe(401);
   });
+  
 });

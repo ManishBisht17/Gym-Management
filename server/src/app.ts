@@ -6,6 +6,7 @@ import { rateLimit } from 'express-rate-limit';
 import { env } from './config/env.js';
 import { authRouter } from './routes/auth.js';
 import { gymRouter } from './routes/gym.js';
+import { operationsRouter } from './routes/operations.js';
 import { errorHandler, notFound } from './middleware/errors.js';
 
 export const app = express();
@@ -17,5 +18,6 @@ app.use(cookieParser());
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
 app.use('/api/auth', rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: 'draft-7', legacyHeaders: false }), authRouter);
 app.use('/api/gym', gymRouter);
+app.use('/api', operationsRouter);
 app.use(notFound);
 app.use(errorHandler);

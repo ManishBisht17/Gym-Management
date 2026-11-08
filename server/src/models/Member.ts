@@ -1,0 +1,4 @@
+import mongoose, { Schema } from 'mongoose';
+const schema = new Schema({ gymId:{type:Schema.Types.ObjectId,ref:'Gym',required:true}, fullName:{type:String,required:true,trim:true,maxlength:120}, email:{type:String,lowercase:true,trim:true}, phone:{type:String,required:true,trim:true}, gender:{type:String,enum:['female','male','other','prefer_not_to_say']}, dateOfBirth:Date,address:{type:String,trim:true,maxlength:500}, memberId:{type:String,required:true,trim:true}, joiningDate:{type:Date,default:Date.now}, notes:{type:String,maxlength:2000}, archivedAt:Date },{timestamps:true});
+schema.index({gymId:1,memberId:1},{unique:true}); schema.index({gymId:1,archivedAt:1,createdAt:-1}); schema.index({gymId:1,fullName:1}); schema.index({gymId:1,phone:1});
+export const Member=mongoose.model('Member',schema);
