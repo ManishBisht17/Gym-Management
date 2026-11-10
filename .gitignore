@@ -5,3 +5,6 @@ dist/
 !.env.example
 coverage/
 *.tsbuildinfo
+server/uploads/logos/*
+!server/uploads/logos/.gitkeep
+!server/uploads/.gitkeep
